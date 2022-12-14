@@ -1,0 +1,51 @@
+﻿@model NewEmployeeVM
+@using Check1.Data;
+ 
+@{
+    ViewData["Title"] = "Create a new Employee";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Create a new Employee</h4>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                          
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DepartmentId" class="control-label"></label>
+                                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.Departments"></select>
+                                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                            </div>
+                       
+                        </div>
+                  
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
