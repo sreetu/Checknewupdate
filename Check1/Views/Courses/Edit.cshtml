@@ -1,0 +1,84 @@
+﻿@model NewCourseVM
+@using Check1.Data.ViewModels
+
+@{
+    ViewData["Title"] = "Update Course";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Update Course</h4>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            @*<div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <input asp-for="Description" type="date" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <label asp-for="MaxMarks" class="control-label"></label>
+                                <input asp-for="MaxMarks" type="number" class="form-control" />
+                                <span asp-validation-for="MaxMarks" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PassMarks" class="control-label"></label>
+                                <input asp-for="PassMarks" type="number" class="form-control" />
+                                <span asp-validation-for="PassMarks" class="text-danger"></span>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="StudentIds" class="control-label"></label>
+                                <select asp-for="StudentIds" class="form-control" asp-items="ViewBag.Students" multiple></select>
+                                <span asp-validation-for="StudentIds" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $("#ImageURL").val();
+        });
+        $("#ImageURL").on("change", function () {
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $(this).val();
+        })
+    </script>
+}*@

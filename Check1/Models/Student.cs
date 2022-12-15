@@ -14,6 +14,7 @@ namespace Check1.Models
         [ForeignKey("DepartmentId")]
         public Department Department { get; set; }
         */
-        List<StudentAttendance>? StudentAttendances { get; set; }
+        public List<StudentAttendance>? StudentAttendances { get; set; }
+        public List<Student_Course>? Student_Courses { get; set; }
     }
 }

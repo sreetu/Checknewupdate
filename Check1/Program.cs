@@ -12,6 +12,7 @@ builder.Services.AddScoped<IEmployeesService, EmployeesService>();
 builder.Services.AddScoped<IDepartmentsService, DepartmentsService>();
 builder.Services.AddScoped<IEmployeeAttendancesService, EmployeeAttendancesService>();
 builder.Services.AddScoped<IStudentsService, StudentsService>();
+builder.Services.AddScoped<ICoursesService, CoursesService>();
 builder.Services.AddScoped<IStudentAttendancesService, StudentAttendancesService>();
 builder.Services.AddControllersWithViews();
 

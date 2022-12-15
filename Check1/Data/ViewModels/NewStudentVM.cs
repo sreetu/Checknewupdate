@@ -16,5 +16,9 @@ namespace Check1.Data.ViewModels
         [Display(Name = "Select a dept")]
         [Required(ErrorMessage = "dept is required")]
         public int DepartmentId { get; set; }*/
+
+        [Display(Name = "Select Courses(s)")]
+        [Required(ErrorMessage = "Student Courses(s) is required")]
+        public List<int> CourseIds { get; set; }
     }
 }

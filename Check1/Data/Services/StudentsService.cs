@@ -22,14 +22,23 @@ namespace Check1.Data.Services
             };
             await _context.Students.AddAsync(newStudent);
             await _context.SaveChangesAsync();
+            foreach (var courseId in data.CourseIds)
+            {
+                var newStudentCourse = new Student_Course()
+                {
+                    StudentId = newStudent.Id,
+                    CourseId = courseId
+                };
+                await _context.Student_Courses.AddAsync(newStudentCourse);
+            }
+            await _context.SaveChangesAsync();
 
-            
         }
 
         public async Task<Student> GetStudentByIdAsync(int id)
         {
             var studentDetails = await _context.Students
-               // .Include(c => c.Department)
+                .Include(am => am.Student_Courses).ThenInclude(a => a.Course)
                 .FirstOrDefaultAsync(n => n.Id == id);
 
             return studentDetails;
@@ -39,7 +48,8 @@ namespace Check1.Data.Services
         {
             var response = new NewStudentDropdownsVM()
             {
-               // Departments = await _context.Departments.OrderBy(n => n.Name).ToListAsync(),
+                Courses = await _context.Courses.OrderBy(n => n.Name).ToListAsync(),
+            
             };
 
             return response;
@@ -49,14 +59,20 @@ namespace Check1.Data.Services
         {
             var dbStudent = await _context.Students.FirstOrDefaultAsync(n => n.Id == data.Id);
 
-            if (dbStudent != null)
-            {
-                dbStudent.Name = data.Name;
-              //  dbStudent.DepartmentId = data.DepartmentId;
-                await _context.SaveChangesAsync();
-            }
+            var existingCoursesDb = _context.Student_Courses.Where(n => n.StudentId == data.Id).ToList();
+            _context.Student_Courses.RemoveRange(existingCoursesDb);
+            await _context.SaveChangesAsync();
 
-          
+            //Add Student Courses
+            foreach (var courseId in data.CourseIds)
+            {
+                var newStudentCourse = new Student_Course()
+                {
+                    StudentId = data.Id,
+                    CourseId = courseId
+                };
+                await _context.Student_Courses.AddAsync(newStudentCourse);
+            }
             await _context.SaveChangesAsync();
         }
     }

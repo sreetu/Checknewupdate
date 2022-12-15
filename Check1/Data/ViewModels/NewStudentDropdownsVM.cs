@@ -7,11 +7,11 @@ namespace Check1.Data.ViewModels
         public NewStudentDropdownsVM()
         {
 
-         //   Courses = new List<Course>();
+            Courses = new List<Course>();
 
         }
 
 
-      //  public List<Department> Departments { get; set; }
+        public List<Course> Courses { get; set; }
     }
 }

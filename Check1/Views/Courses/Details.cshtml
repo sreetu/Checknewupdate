@@ -1,7 +1,7 @@
-﻿@model Student
+﻿@model Course
 
 @{
-    ViewData["Title"] = "Student details";
+    ViewData["Title"] = "Course details";
 }
 
 <div class="row">
@@ -17,24 +17,21 @@
                         </p>
                     </div>
                 </div>
-              
+               
                 <div class="col-md-8">
                     <div class="card-body">
+                        <p class="card-text">@Model.Description</p>
+                        <p class="card-text">@Model.MaxMarks</p>
+                        <p class="card-text">@Model.PassMarks</p>
                        
-                        @*<p class="card-text">
-                            <b>Department: </b>
-                            <a asp-controller="Departments" asp-action="Details" asp-route-id="@Model.DepartmentId">
-                                @Model.Department.Name
-                            </a>
-                        </p>*@
                         <p class="card-text">
-                            <b>Courses: </b>
+                            <b>Students: </b>
                             <hr />
                             <div class="row">
-                                @foreach (var course in Model.Student_Courses)
+                                @foreach (var student in Model.Student_Courses)
                                 {
                                     <div class="column text-center">
-                                        <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.CourseId">@course.Course.Name</a>
+                                        <a asp-controller="Students" asp-action="Details" asp-route-id="@student.StudentId">@student.Student.Name</a>
                                     </div>
                                 }
                             </div>
@@ -48,7 +45,6 @@
                             <a class="btn btn-outline-primary float-right" asp-action="Index">
                                 Back to List
                             </a>
-                        
                         </p>
                     </div>
                 </div>

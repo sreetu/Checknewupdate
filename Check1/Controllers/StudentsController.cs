@@ -20,7 +20,7 @@ namespace Check1.Controllers
         public async Task<IActionResult> Index()
         {
             var allStudents = await _service.GetAllAsync();
-            //n => n.Department
+            //n => n.Course
             return View(allStudents);
         }
 
@@ -54,7 +54,7 @@ namespace Check1.Controllers
         {
             var StudentDropdownsData = await _service.GetNewStudentDropdownsValues();
 
-           // ViewBag.Departments = new SelectList(StudentDropdownsData.Departments, "Id", "Name");
+            ViewBag.Courses = new SelectList(StudentDropdownsData.Courses, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace Check1.Controllers
             {
                 var StudentDropdownsData = await _service.GetNewStudentDropdownsValues();
 
-                //ViewBag.Departments = new SelectList(StudentDropdownsData.Departments, "Id", "Name");
+                ViewBag.Courses = new SelectList(StudentDropdownsData.Courses, "Id", "Name");
                 return View(Student);
             }
 
@@ -84,11 +84,11 @@ namespace Check1.Controllers
             {
                 Id = StudentDetails.Id,
                 Name = StudentDetails.Name,
-                //DepartmentId = StudentDetails.DepartmentId,
+                CourseIds = StudentDetails.Student_Courses.Select(n => n.CourseId).ToList(),
             };
 
             var StudentDropdownsData = await _service.GetNewStudentDropdownsValues();
-            //ViewBag.Departments = new SelectList(StudentDropdownsData.Departments, "Id", "Name");
+            ViewBag.Courses = new SelectList(StudentDropdownsData.Courses, "Id", "Name");
             return View(response);
         }
 
@@ -101,7 +101,7 @@ namespace Check1.Controllers
             {
                 var StudentDropdownsData = await _service.GetNewStudentDropdownsValues();
 
-                //ViewBag.Departments = new SelectList(StudentDropdownsData.Departments, "Id", "Name");
+                ViewBag.Courses = new SelectList(StudentDropdownsData.Courses, "Id", "Name");
                 return View(Student);
             }
 
